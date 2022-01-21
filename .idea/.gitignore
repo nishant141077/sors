@@ -1,0 +1,16 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+.idea
+*.iml
+.project
+.classpath
+/.settings/
+target
+.project
+.settings/
+*.ipr
+*.iws
+*.log
+*.dat
+dependency-reduced-pom.xml
