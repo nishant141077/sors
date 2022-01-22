@@ -4,13 +4,148 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.example</groupId>
+  <groupId>com.github.nishant141077</groupId>
   <artifactId>sors</artifactId>
   <version>1.0-SNAPSHOT</version>
+
+  <repositories>
+    <repository>
+      <id>clojars</id>
+      <name>Clojars repository</name>
+      <url>https://clojars.org/repo</url>
+    </repository>
+  </repositories>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <lombok.version>1.18.20</lombok.version>
+    <lombok.maven.version>1.16.16.0</lombok.maven.version>
+    <dropwizard.version>1.3.5</dropwizard.version>
+    <dropwizard-swagger.version>1.3.5-1</dropwizard-swagger.version>
+    <dropwizard-guicey.version>4.1.0</dropwizard-guicey.version>
+    <db-sharding-bundle.version>1.3.13-4</db-sharding-bundle.version>
+    <mariadb-java-client.version>1.3.6</mariadb-java-client.version>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <artifactId>dropwizard-core</artifactId>
+      <groupId>io.dropwizard</groupId>
+      <version>${dropwizard.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.9.10</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.code.findbugs</groupId>
+          <artifactId>annotations</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <artifactId>dropwizard-swagger</artifactId>
+      <groupId>com.smoketurner</groupId>
+      <version>${dropwizard-swagger.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.reflections</groupId>
+          <artifactId>reflections</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <artifactId>dropwizard-guicey</artifactId>
+      <groupId>ru.vyarus</groupId>
+      <version>${dropwizard-guicey.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>db-sharding-bundle</artifactId>
+      <groupId>io.appform.dropwizard.sharding</groupId>
+      <version>${db-sharding-bundle.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>mariadb-java-client</artifactId>
+      <groupId>org.mariadb.jdbc</groupId>
+      <version>${mariadb-java-client.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <compilerArgument>-parameters</compilerArgument>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>lombok-maven-plugin</artifactId>
+        <groupId>org.projectlombok</groupId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>delombok</goal>
+            </goals>
+          </execution>
+        </executions>
+        <version>${lombok.maven.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.4.3</version>
+        <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/*.SF</exclude>
+                <exclude>META-INF/*.DSA</exclude>
+                <exclude>META-INF/*.RSA</exclude>
+              </excludes>
+            </filter>
+          </filters>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.github.nishant141077.sors.SorsApp</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

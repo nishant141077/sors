@@ -1,0 +1,6 @@
+Design:
+
+Learning:
+1. Maven compiler plugin: used to compile the source code of a maven project.
+2. Lombok maven plugin: used to generate delomboked class files, using delombok goal.
+3. Maven Shade Plugin: provides the capability to package the artifact in an uber-jar, including its dependencies and to shade - i.e. rename - the packages of some of the dependencies.
