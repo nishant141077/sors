@@ -21,7 +21,7 @@ public class SorsApp extends Application<SorsConfig> {
 
   @Override
   public void initialize(Bootstrap<SorsConfig> bootstrap) {
-    initConfigurations(bootstrap);
+    initConfiguration(bootstrap);
     initSwaggerBundle(bootstrap);
     initGuiceBundle(bootstrap);
   }
@@ -43,7 +43,7 @@ public class SorsApp extends Application<SorsConfig> {
     });
   }
 
-  private void initConfigurations(Bootstrap<SorsConfig> bootstrap) {
+  private void initConfiguration(Bootstrap<SorsConfig> bootstrap) {
     bootstrap.setConfigurationSourceProvider(
         new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
             new EnvironmentVariableSubstitutor()));
