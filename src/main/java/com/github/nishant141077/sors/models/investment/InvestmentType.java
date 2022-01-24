@@ -12,7 +12,6 @@ public enum InvestmentType {
   FIXED_DEPOSIT("Fixed Deposit", "FD"),
   NATIONAL_PENSION_SCHEME("National Pension Scheme", "NPS"),
   GOLD("Gold", "GOLD"),
-  BOND("Bond", "BOND"),
   LIFE_INSURANCE("Life Insurance", "LINS");
 
   private final String code;
@@ -31,7 +30,6 @@ public enum InvestmentType {
   public static final String FIXED_DEPOSIT_TEXT = "FIXED_DEPOSIT";
   public static final String NATIONAL_PENSION_SCHEME_TEXT = "NATIONAL_PENSION_SCHEME";
   public static final String GOLD_TEXT = "GOLD";
-  public static final String BOND_TEXT = "BOND";
   public static final String LIFE_INSURANCE_TEXT = "LIFE_INSURANCE";
 
 }

@@ -12,16 +12,18 @@ import org.hibernate.validator.constraints.NotBlank;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class MutualFundInvestment extends Investment {
+public class GoldInvestment extends Investment {
 
   @NotBlank
-  private String company;
+  private String provider;
+  private double purity;
 
   @Builder
-  public MutualFundInvestment(String name, String investmentId, InvestmentState state,
-      String company) {
-    super(InvestmentType.MUTUAL_FUND, name, investmentId, state);
+  public GoldInvestment(String name, String investmentId, InvestmentState state, String provider,
+      double purity) {
+    super(InvestmentType.GOLD, name, investmentId, state);
 
-    this.company = company;
+    this.provider = provider;
+    this.purity = purity;
   }
 }
