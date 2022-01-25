@@ -1,5 +1,6 @@
 package com.github.nishant141077.sors.models.investment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.nishant141077.sors.models.investment.impl.EquityInvestment;
@@ -11,6 +12,7 @@ import com.github.nishant141077.sors.models.investment.impl.NPSInvestment;
 import com.github.nishant141077.sors.models.investment.impl.PPFInvestment;
 import com.github.nishant141077.sors.models.investment.impl.RecurringDepositInvestment;
 import com.github.nishant141077.sors.models.investment.impl.SavingsAccountInvestment;
+import java.util.Date;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,21 +38,32 @@ public abstract class Investment {
 
   @NotNull
   private InvestmentType type;
+
   @NotBlank
   private String name;
+
   private String investmentId;
+
   @NotNull
   private InvestmentState state;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "IST")
+  private Date createdAt;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "IST")
+  private Date updatedAt;
 
   protected Investment(InvestmentType type) {
     this.type = type;
   }
 
   protected Investment(InvestmentType type, String name, String investmentId,
-      InvestmentState state) {
+      InvestmentState state, Date createdAt, Date updatedAt) {
     this.type = type;
     this.name = name;
     this.investmentId = investmentId;
     this.state = state;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }

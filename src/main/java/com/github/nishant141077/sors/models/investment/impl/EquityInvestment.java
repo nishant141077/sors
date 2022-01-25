@@ -3,6 +3,7 @@ package com.github.nishant141077.sors.models.investment.impl;
 import com.github.nishant141077.sors.models.investment.Investment;
 import com.github.nishant141077.sors.models.investment.InvestmentState;
 import com.github.nishant141077.sors.models.investment.InvestmentType;
+import java.util.Date;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,8 +19,9 @@ public class EquityInvestment extends Investment {
   private String company;
 
   @Builder
-  public EquityInvestment(String name, String investmentId, InvestmentState state, String company) {
-    super(InvestmentType.EQUITY, name, investmentId, state);
+  public EquityInvestment(String name, String investmentId, InvestmentState state, String company,
+      Date createdAt, Date updatedAt) {
+    super(InvestmentType.EQUITY, name, investmentId, state, createdAt, updatedAt);
 
     this.company = company;
   }
