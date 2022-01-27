@@ -1,4 +1,10 @@
 Design:
+------------------V1------------------
+a) Entity Models
+#1 Goal : Basic meta data for the financial goal to be tracked and achieved. E.g Car, Home, Education, Family planning, Retirement, Vacation etc.
+#2 Investment : Meta data for the actual fund/place where the money is invested. It could be of different types like MutualFund, Equity, SavingsAccount etc.
+Different accounts/funds/shares will be treated as a different investments.
+#3 Transaction : A transaction against an investment to keep track of the wealth. It could be of different types like DEPOSIT, INTEREST, WITHDRAWAL.
 
 Learning:
 1. Maven compiler plugin: used to compile the source code of a maven project.
