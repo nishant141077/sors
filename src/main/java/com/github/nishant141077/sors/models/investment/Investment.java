@@ -53,6 +53,8 @@ public abstract class Investment {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "IST")
   private Date updatedAt;
 
+  public abstract <T> T accept(InvestmentVisitor<T> visitor);
+
   protected Investment(InvestmentType type) {
     this.type = type;
   }

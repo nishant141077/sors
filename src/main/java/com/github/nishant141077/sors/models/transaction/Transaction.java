@@ -24,6 +24,7 @@ public class Transaction {
   @NotBlank
   private String investmentId;
 
+  @NotBlank
   private String goalId;
 
   private String platform;
